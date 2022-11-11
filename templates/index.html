@@ -1,0 +1,38 @@
+{% extends "base.html"  %}
+{% block content %}
+
+  <div class="container">
+
+    <div class="row">
+
+      {% if currentMoods | length %}
+      <div class="card-columns">
+        {% for mood in currentMoods %}
+        <div class="card border-{{ mood.moodColor() }}>
+          <div class="card-body">
+            <h5 class="card-title">Mood: {{ mood['mood'] }}</h5>
+            <p class="card-text">{{ mood['comment'] }}</p>
+            <footer class="blockquote-footer">
+              <small class="text-muted">
+                {{ mood['name'] }}
+              </small>
+            </footer>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal">No moods yet</h1>
+        <p class="fs-5 text-muted">
+          <a href="{{ url_for('mood')}}">Be the first to leave your mood</a>
+        </p>
+      </div>
+      {% endif %}
+
+    </div>
+    <!-- ./row -->
+  </div>
+</div>
+
+{% endblock %}
