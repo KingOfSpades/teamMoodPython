@@ -1,12 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for
-from flask_wtf import FlaskForm
+from flask import Flask, render_template, request, redirect, url_for, session
 from wtforms import StringField, SubmitField
+import uuid
 
 from mood import Mood, mood_form, teamMoods
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'u/uGX8FzHMr9ijbuGz8B+Q'
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
 
 @app.route('/', methods=['GET'])
 def index():
@@ -17,14 +19,22 @@ def index():
 def mood():
     form = mood_form()
     if request.method == 'POST':
+        if "uuid" in session:
+            pass
+        else:
+            session['uuid'] = uuid.uuid4()
         new_mood = Mood(
             form.name.data,
             form.mood.data,
             form.comment.data
         )
-        teamMoods.append(new_mood)
+        teamMoods[session["uuid"]] = new_mood
         return redirect('/')
-    return render_template("mood.html", form=form, currentMoods=teamMoods )
+    if request.method == 'GET' and session['uuid'] in teamMoods:
+        form.name.data = teamMoods[session['uuid']].name
+        form.mood.data = teamMoods[session['uuid']].mood
+        form.comment.data = teamMoods[session['uuid']].comment
+    return render_template("mood.html", form=form, currentMoods=teamMoods)
 
 
 @app.route('/about', methods=['GET'])

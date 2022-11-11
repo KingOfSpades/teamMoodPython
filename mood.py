@@ -33,5 +33,5 @@ class mood_form(FlaskForm):
 
     submit = SubmitField("Submit")
 
-teamMoods = []
+teamMoods = {}
 

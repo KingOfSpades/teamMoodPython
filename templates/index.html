@@ -7,8 +7,8 @@
 
       {% if currentMoods | length %}
       <div class="card-columns">
-        {% for mood in currentMoods %}
-        <div class="card border-{{ mood.moodColor() }}>
+        {% for uuid, mood in currentMoods.items() %}
+        <div class="card border-{{ mood.moodColor() }}">
           <div class="card-body">
             <h5 class="card-title">Mood: {{ mood['mood'] }}</h5>
             <p class="card-text">{{ mood['comment'] }}</p>
@@ -26,6 +26,7 @@
         <h1 class="display-4 fw-normal">No moods yet</h1>
         <p class="fs-5 text-muted">
           <a href="{{ url_for('mood')}}">Be the first to leave your mood</a>
+          <p>Session: {{ session.uuid }} </p>
         </p>
       </div>
       {% endif %}
