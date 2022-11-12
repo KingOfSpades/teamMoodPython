@@ -18,11 +18,11 @@ def index():
 @app.route('/mood', methods=['GET', 'POST'])
 def mood():
     form = mood_form()
+
+    if "uuid" not in session:
+        session['uuid'] = uuid.uuid4()
+
     if request.method == 'POST':
-        if "uuid" in session:
-            pass
-        else:
-            session['uuid'] = uuid.uuid4()
         new_mood = Mood(
             form.name.data,
             form.mood.data,
@@ -30,6 +30,7 @@ def mood():
         )
         teamMoods[session["uuid"]] = new_mood
         return redirect('/')
+    
     if request.method == 'GET' and session['uuid'] in teamMoods:
         form.name.data = teamMoods[session['uuid']].name
         form.mood.data = teamMoods[session['uuid']].mood
