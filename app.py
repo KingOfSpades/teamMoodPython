@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from wtforms import StringField, SubmitField
 import uuid
 
 from mood import Mood, mood_form, teamMoods
