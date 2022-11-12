@@ -19,25 +19,24 @@
 
 <body>
 
-  <header class="p-3 text-bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <span class="fs-4">TeamMood</span>
-          <p>A simple moodboard for daily reflection</p>
-        </a>
-
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-          <li class="nav-item"><a href="{{ url_for('index') }}" class="nav-link px-2">Home</a></li>
-          <li class="nav-item"><a href="{{ url_for('mood') }}" class="nav-link px-2">Mood</a></li>
-          <li class="nav-item"><a href="{{ url_for('about') }}" class="nav-link px-2">About</a></li>
-        </ul>
-      </div>
+        <a href="{{ url_for('index') }}" class="navbar-brand">TeamMood | </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+              <li><a href="{{ url_for('index') }}" class="nav-link px-2 text-white">Home</a></li>
+              <li><a href="{{ url_for('mood') }}" class="nav-link px-2 text-white">Mood</a></li>
+              <li><a href="{{ url_for('about') }}" class="nav-link px-2 text-white">About</a></li>
+            </div>
+            <div class="col text-end">
+              <span class="text-white text-end align-middle">A simple moodboard for daily reflection</span>
+            </div>
+        </div>
     </div>
-  </header>
+  </nav>
 
   <main role="main">
     <!-- Loading main content here -->
@@ -45,17 +44,17 @@
 
 </main>
 
-<div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top fixed-bottom">
-    <p class="col-md-4 mb-0 text-muted">© 2022 NoOne, Inc</p>
-    <p class="col-md-auto mb-0 text-muted pull-right">Session ID: {{ session.uuid }}</p>
-  </footer>
-</div>
+<footer class="footer mt-auto py-3 bg-light fixed-bottom">
+  <div class="container">
+    <span class="text-muted">Session ID: {{ session.uuid }}</span>
+  </div>
+</footer>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src={{ url_for('static', filename='bootstrap-5.2.2-dist/js/bootstrap.min.js') }}></script>
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 </body>
 </html>
