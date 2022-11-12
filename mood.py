@@ -2,6 +2,15 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField, RadioField
 from wtforms.validators import InputRequired, Length, DataRequired
 
+
+moods = { 
+            "Fantastic": {"description": "Fantastic", "color": "succes", "icon": "🤩"},
+            "Great": {"description": "Great", "color": "info", "icon": "😄"},
+            "Good": {"description": "Good", "color": "light", "icon": "🙂"},
+            "Bad": {"description": "Bad", "color": "warning", "icon": "🙁"},
+            "Terrible": {"description": "Terrible", "color": "danger", "icon": "😡"}
+        }  
+
 class Mood():
     def __init__(self, name, mood, comment):
         self.mood = mood
@@ -9,32 +18,15 @@ class Mood():
         self.comment = comment
 
     def moodColor(self):
-        color = ""
-        icon = ""
-        if self.mood == "Fantastic":
-            color = "success"
-            icon = "🤩"
-        elif self.mood == "Great":
-            color = "info"
-            icon = "😄"
-        elif self.mood == "Good":
-            color = "light"
-            icon = "🙂"
-        elif self.mood == "Bad":
-            color = "warning"
-            icon = "🙁"
-        elif self.mood == "Terrible":
-            color = "danger"
-            icon = "😡"
-        else:
-            color = "dark"
-        return color, icon
+        return moods[self.mood]['color']
 
-moods = { "Fantastic", "Great", "Good", "Bad", "Terrible" }    
+    def moodSmiley(self):
+        return moods[self.mood]['icon']
+ 
 
 class mood_form(FlaskForm):
     name = StringField("TextLabel")
-    mood = RadioField('certification', choices=[('Fantastic','🤩 (Fantasic)'),('Great','😄 (Great)'), ('Good', '🙂 (Good/Neutral)'), ('Bad', '🙁 (Bad)'), ('Terrible', '😡 (Terrible)')])
+    mood = RadioField('certification', choices=[('Fantastic','🤩 (Fantasic)'),('Great','😄 (Great)'), ('Good', '🙂 (Good/Neutral)'), ('Bad', '🙁 (Bad)'), ('Terrible', '😡 (Terrible)')], validators=[InputRequired()])
     comment = TextAreaField("TextLabel")
 
     submit = SubmitField("Submit")

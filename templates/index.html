@@ -10,7 +10,7 @@
         {% for uuid, mood in currentMoods.items() %}
         <div class="card border-{{ mood.moodColor() }}">
           <div class="card-body">
-            <h5 class="card-title">Mood: {{ mood['mood'] }}</h5>
+            <h5 class="card-title">{{ mood.moodSmiley() }} ({{ mood['mood'] }})</h5>
             <p class="card-text">{{ mood['comment'] }}</p>
             <footer class="blockquote-footer">
               <small class="text-muted">
