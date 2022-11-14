@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField, RadioField
-from wtforms.validators import InputRequired, Length, DataRequired
+from wtforms.validators import InputRequired, Length
 import random
 
 class Names():
@@ -68,8 +68,8 @@ class Mood():
 
 
 class mood_form(FlaskForm):
-    name = StringField("TextLabel")
-    mood = RadioField('certification', 
+    name = StringField("Name", render_kw={'readonly': True})
+    mood = RadioField('Mood', 
         choices=[
             (Moods.moods['Fantastic']['description'], Moods.moods['Fantastic']['icon'] + " ( " + Moods.moods['Fantastic']['description'] + " )"), 
             (Moods.moods['Great']['description'], Moods.moods['Great']['icon'] + " ( " + Moods.moods['Great']['description'] + " )"),
@@ -77,7 +77,7 @@ class mood_form(FlaskForm):
             (Moods.moods['Bad']['description'], Moods.moods['Bad']['icon'] + " ( " + Moods.moods['Bad']['description'] + " )"),
             (Moods.moods['Terrible']['description'], Moods.moods['Terrible']['icon'] + " ( " + Moods.moods['Terrible']['description'] + " )")],
             validators=[InputRequired()])
-    comment = TextAreaField("TextLabel")
+    comment = TextAreaField("Comment", validators=[Length(max=750)])
 
     submit = SubmitField("Submit")
 

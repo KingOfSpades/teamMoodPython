@@ -17,12 +17,13 @@
           <form method="POST" action="{{ url_for('mood') }}">
             <div class="mb-3">
               {{ form.name(class='form-control', value=name) }}
+              <span class="text-muted">* Names are static and automatically generated</span>
             </div>
             <div class="mb-3">
               {{ form.mood(class='form-control', placeholder='Your mood') }}
             </div>
             <div class="mb-3">
-              {{ form.comment(class='form-control', placeholder='Any notes you want to share (optional)') }}
+              {{ form.comment(class='form-control', placeholder='Any notes you want to share (optional, max 750 characters)') }}
             </div>
             <div class="mb-3">
               {{ form.submit(class='btn btn-primary mb-2 form-control') }}
