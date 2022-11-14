@@ -80,6 +80,3 @@ class mood_form(FlaskForm):
     comment = TextAreaField("Comment", validators=[Length(max=750)])
 
     submit = SubmitField("Submit")
-
-teamMoods = {}
-
