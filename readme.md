@@ -16,8 +16,7 @@ This is easy:
     ```
 3. Activate the `venv` and install the dependancys:
     ```bash
-    $ cd FOLDER
-    $ source bin/activate
+    $ source FOLDER/bin/activate
     $ pip install -r requirements.txt
     ```
 3. Finally, start the application:
