@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import uuid, random
+import uuid
 
-from mood import Names, Moods, Mood, mood_form, teamMoods
+from mood import Names, Moods, Mood, mood_form
 
 app = Flask(__name__)
 
