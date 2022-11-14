@@ -3,6 +3,17 @@ from wtforms import StringField, SubmitField, TextAreaField, RadioField
 from wtforms.validators import InputRequired, Length, DataRequired
 from collections import Counter
 
+class Names():
+
+    colors = ['Red', 'Blue']
+    animals = ['Vox', 'Bird']
+
+    names = []
+    for color in colors:
+        for animal in animals:
+            names.append(color + " " + animal)
+
+
 class Moods():
     def __init__(self):
         self.teamMoods = {}
@@ -36,7 +47,7 @@ class Moods():
         return moodMap
 
 
-class Mood(Moods):
+class Mood():
     def __init__(self, name, mood, comment):
         self.mood = mood
         self.name = name

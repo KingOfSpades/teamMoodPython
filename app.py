@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import uuid
 
-from mood import Moods, Mood, mood_form, teamMoods
+from mood import Names, Moods, Mood, mood_form, teamMoods
 
 app = Flask(__name__)
 
@@ -10,6 +10,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
 Moods = Moods()
+names = Names()
 
 @app.route('/', methods=['GET'])
 def index():
@@ -22,6 +23,9 @@ def mood():
 
     if "uuid" not in session:
         session['uuid'] = uuid.uuid4()
+
+    if "name" not in session:
+        session['name'] = names.names.pop()
 
     if request.method == 'POST':
         new_mood = Mood(
@@ -36,7 +40,7 @@ def mood():
         form.name.data = teamMoods[session['uuid']].name
         form.mood.data = teamMoods[session['uuid']].mood
         form.comment.data = teamMoods[session['uuid']].comment
-    return render_template("mood.html", form=form, currentMoods=Moods.teamMoods)
+    return render_template("mood.html", form=form, currentMoods=Moods.teamMoods, name=session['name'])
 
 
 @app.route('/about', methods=['GET'])
