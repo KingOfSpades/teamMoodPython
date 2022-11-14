@@ -60,3 +60,16 @@ docker stop teamMoodApp && docker rm teamMoodApp
 teamMoodApp
 teamMoodApp
 ```
+
+# Security
+
+This project is scaned by `pip-audit` and has the following issues:
+
+```bash
+$ pip-audit --desc
+Found 1 known vulnerability in 1 package
+Name     Version ID             Fix Versions Description
+werkzeug 1.0.0   PYSEC-2022-203 2.1.1        ** DISPUTED ** Improper parsing of HTTP requests in Pallets Werkzeug v2.1.0 and below allows attackers to perform HTTP Request Smuggling using a crafted HTTP request with multiple requests included inside the body. NOTE: the vendor's position is that this behavior can only occur in unsupported configurations involving development mode and an HTTP server from outside the Werkzeug project.
+```
+
+- PYSEC-2022-203 has the status of **DISPUTED**
