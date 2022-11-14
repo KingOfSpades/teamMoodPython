@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import uuid, random
+import uuid
 
-from mood import Names, Moods, Mood, mood_form, teamMoods
+from mood import Names, Moods, Mood, mood_form
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'u/uGX8FzHMr9ijbuGz8B+Q'
+app.config['SECRET_KEY'] = str(uuid.uuid4())
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
