@@ -5,7 +5,7 @@ from mood import Names, Moods, Mood, mood_form
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'u/uGX8FzHMr9ijbuGz8B+Q'
+app.config['SECRET_KEY'] = str(uuid.uuid4())
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
