@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import uuid
+import uuid, random
 
 from mood import Names, Moods, Mood, mood_form, teamMoods
 
@@ -10,7 +10,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
 Moods = Moods()
-names = Names()
+Names = Names()
 
 @app.route('/', methods=['GET'])
 def index():
@@ -25,7 +25,7 @@ def mood():
         session['uuid'] = uuid.uuid4()
 
     if "name" not in session:
-        session['name'] = names.names.pop()
+        session['name'] = Names.randomName()
 
     if request.method == 'POST':
         new_mood = Mood(

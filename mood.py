@@ -1,17 +1,26 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField, RadioField
 from wtforms.validators import InputRequired, Length, DataRequired
-from collections import Counter
+import random
 
 class Names():
 
-    colors = ['Red', 'Blue']
-    animals = ['Vox', 'Bird']
+    colors = ['Red', 'Green', 'Yellow', 'Blue', 'Purple', 'Static', 'Electric', 'Amazing', 'Ninja']
+    animals = ['Vox', 'Bird', 'Snake', 'Bever', 'Turtle']
 
     names = []
     for color in colors:
         for animal in animals:
             names.append(color + " " + animal)
+
+    def randomName(self):
+        name = ""
+        if self.names:
+            name = self.names.pop(random.randint(0,len(Names.names)-1))
+        else:
+            name = "We have no names, man. No names. We are nameless!"
+        return name
+
 
 
 class Moods():
