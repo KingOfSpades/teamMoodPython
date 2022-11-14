@@ -12,11 +12,11 @@ This is easy:
 1. Clone the repo
 2. Before entering the folder, create a virutal env with python:
     ```bash
-    $ python3 -m venv FOLDER
+    $ python3 -m venv venv_teamMoodPython
     ```
 3. Activate the `venv` and install the dependancys:
     ```bash
-    $ source FOLDER/bin/activate
+    $ source venv_teamMoodPython/bin/activate
     $ pip install -r requirements.txt
     ```
 3. Finally, start the application:
