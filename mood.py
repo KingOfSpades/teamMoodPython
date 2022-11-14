@@ -4,28 +4,46 @@ from wtforms.validators import InputRequired, Length, DataRequired
 
 class Moods():
     def __init__(self):
-        self.Fantastic = {"description": "Fantastic", "color": "succes", "icon": "🤩"}
-        self.Great = {"description": "Great", "color": "info", "icon": "😄"}
-        self.Good = {"description": "Good", "color": "light", "icon": "🙂"}
-        self.Bad = {"description": "Bad", "color": "warning", "icon": "🙁"}
-        self.Terrible = {"description": "Terrible", "color": "danger", "icon": "😡"}
+        self.teamMoods = {}
+    
+    moods = {
+        "Fantastic": {"description": "Fantastic", "color": "success", "icon": "🤩", "opacity": "bg-opacity-100"},
+        "Great": {"description": "Great", "color": "success", "icon": "😄", "opacity": "bg-opacity-75"},
+        "Good": {"description": "Good", "color": "success", "icon": "🙂", "opacity": "bg-opacity-50"},
+        "Bad": {"description": "Bad", "color": "warning", "icon": "🙁", "opacity": "bg-opacity-100"},
+        "Terrible": {"description": "Terrible", "color": "danger", "icon": "😡", "opacity": "bg-opacity-100"}
+    }
 
-    def moodColor(self, mood):
-        return self.mood['color']
+    def moodMap(self):
+        moodMap = {'count': 0, 'percentage': 0}
+        for uuid, moods in self.moodMap:
+            for mood in moods:
+                pass
+               # moodMap['count'] =  operator.countOf(moods, mood)
+        return moodMap
 
-    def moodSmiley(self, mood):
-        return self.mood['icon']
-        
-class Mood():
+
+class Mood(Moods):
     def __init__(self, name, mood, comment):
         self.mood = mood
         self.name = name
         self.comment = comment
+        self.color = Moods.moods[mood]['color']
+        self.icon = Moods.moods[mood]['icon']
+        self.description = Moods.moods[mood]['description']
+        self.opacity = Moods.moods[mood]['opacity']
 
 
 class mood_form(FlaskForm):
     name = StringField("TextLabel")
-    mood = RadioField('certification', choices=[('Fantastic','🤩 (Fantasic)'),('Great','😄 (Great)'), ('Good', '🙂 (Good/Neutral)'), ('Bad', '🙁 (Bad)'), ('Terrible', '😡 (Terrible)')], validators=[InputRequired()])
+    mood = RadioField('certification', 
+        choices=[
+            (Moods.moods['Fantastic']['description'], Moods.moods['Fantastic']['icon'] + " ( " + Moods.moods['Fantastic']['description'] + " )"), 
+            (Moods.moods['Great']['description'], Moods.moods['Great']['icon'] + " ( " + Moods.moods['Great']['description'] + " )"),
+            (Moods.moods['Good']['description'], Moods.moods['Good']['icon'] + " ( " + Moods.moods['Good']['description'] + " )"),
+            (Moods.moods['Bad']['description'], Moods.moods['Bad']['icon'] + " ( " + Moods.moods['Bad']['description'] + " )"),
+            (Moods.moods['Terrible']['description'], Moods.moods['Terrible']['icon'] + " ( " + Moods.moods['Terrible']['description'] + " )")],
+            validators=[InputRequired()])
     comment = TextAreaField("TextLabel")
 
     submit = SubmitField("Submit")
