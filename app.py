@@ -36,10 +36,10 @@ def mood():
         Moods.teamMoods[session["uuid"]] = new_mood
         return redirect('/')
     
-    if request.method == 'GET' and session['uuid'] in teamMoods:
-        form.name.data = teamMoods[session['uuid']].name
-        form.mood.data = teamMoods[session['uuid']].mood
-        form.comment.data = teamMoods[session['uuid']].comment
+    if request.method == 'GET' and session['uuid'] in Moods.teamMoods:
+        form.name.data = Moods.teamMoods[session['uuid']].name
+        form.mood.data = Moods.teamMoods[session['uuid']].mood
+        form.comment.data = Moods.teamMoods[session['uuid']].comment
     return render_template("mood.html", form=form, currentMoods=Moods.teamMoods, name=session['name'])
 
 
