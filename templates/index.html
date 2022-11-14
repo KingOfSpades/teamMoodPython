@@ -14,15 +14,17 @@
       
       <div class="row m-3" data-masonry='{"percentPosition": true }'>
         {% for uuid, mood in currentMoods.items() %}
-        <div class="col-sm-6 col-lg-4 mb-4 card border border-3 border-{{ mood.moodColor() }}">
-          <div class="card-body">
-            <h5 class="card-title">{{ mood.moodSmiley() }} ({{ mood['mood'] }})</h5>
-            <p class="card-text">{{ mood['comment'] }}</p>
-            <footer class="blockquote-footer">
-              <small class="text-muted">
-                {{ mood['name'] }}
-              </small>
-            </footer>
+        <div class="col-sm-6 col-lg-4 mb-4 border-3 border-{{ mood.moodColor() }}">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ mood.moodSmiley() }} ({{ mood['mood'] }})</h5>
+              <p class="card-text">{{ mood['comment'] }}</p>
+              <footer class="blockquote-footer">
+                <small class="text-muted">
+                  {{ mood['name'] }}
+                </small>
+              </footer>
+            </div>
           </div>
         </div>
         {% endfor %}
