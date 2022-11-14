@@ -12,15 +12,18 @@
           <p class="fs-5 text-muted">
             <a href="{{ url_for('mood')}}">Leave your mood here</a>
           </p>
+          <p class="fs-5 text-muted">
+            {{ moodMap }}
+          </p>
         </div>
       </div>
 
         <div class="col progress" style="height: 30px;">
-          <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-          <div class="progress-bar bg-success bg-opacity-75" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-          <div class="progress-bar bg-success bg-opacity-50" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-          <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-          <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar bg-success" role="progressbar" style="width: {{ moodMap.Fantastic.percentage }}%" aria-valuenow="20" aria-valuemin="{{ moodMap.Fantastic.percentage }}" aria-valuemax="100">🤩 (Fantastic) {{ moodMap.Fantastic.count }} </div>
+          <div class="progress-bar bg-success bg-opacity-75" role="progressbar" style="width: {{ moodMap.Great.percentage }}%" aria-valuenow="{{ moodMap.Great.percentage }}" aria-valuemin="0" aria-valuemax="100">😄 (Great) {{ moodMap.Great.count }}</div>
+          <div class="progress-bar bg-success bg-opacity-50" role="progressbar" style="width: {{ moodMap.Good.percentage }}%" aria-valuenow="{{ moodMap.Good.percentage }}" aria-valuemin="0" aria-valuemax="100">🙂 (Good) {{ moodMap.Good.count }}</div>
+          <div class="progress-bar bg-warning" role="progressbar" style="width: {{ moodMap.Bad.percentage }}%" aria-valuenow="{{ moodMap.Bad.percentage }}" aria-valuemin="0" aria-valuemax="100">🙁 (Bad) {{ moodMap.Bad.count }}</div>
+          <div class="progress-bar bg-danger" role="progressbar" style="width: {{ moodMap.Terrible.percentage }}%" aria-valuenow="{{ moodMap.Terrible.percentage }}" aria-valuemin="0" aria-valuemax="100">😡 (Terrible) {{ moodMap.Terrible.count }}</div>
         </div>
       
       <div class="row m-3" data-masonry='{"percentPosition": true }'>

@@ -13,7 +13,7 @@ Moods = Moods()
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template("index.html", currentMoods=Moods.teamMoods)
+    return render_template("index.html", currentMoods=Moods.teamMoods, moodMap=Moods.moodMap())
 
 
 @app.route('/mood', methods=['GET', 'POST'])

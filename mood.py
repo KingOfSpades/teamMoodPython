@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField, RadioField
 from wtforms.validators import InputRequired, Length, DataRequired
+from collections import Counter
 
 class Moods():
     def __init__(self):
@@ -15,11 +16,23 @@ class Moods():
     }
 
     def moodMap(self):
-        moodMap = {'count': 0, 'percentage': 0}
-        for uuid, moods in self.moodMap:
-            for mood in moods:
-                pass
-               # moodMap['count'] =  operator.countOf(moods, mood)
+        moodMap = {
+            'Fantastic': {'count': 0, 'percentage': 0 },
+            'Great': {'count': 0, 'percentage': 0 },
+            'Good': {'count': 0, 'percentage': 0 },
+            'Bad': {'count': 0, 'percentage': 0 },
+            'Terrible': {'count': 0, 'percentage': 0 },
+            }
+        
+        for uuid, mood in self.teamMoods.items():
+            moodMap[mood.mood]['count'] += 1
+        
+        for mood in moodMap:
+            try:
+                moodMap[mood]['percentage'] = (moodMap[mood]['count'] / len(self.teamMoods)) * 100
+            except:
+                moodMap[mood]['percentage'] = 0
+
         return moodMap
 
 
